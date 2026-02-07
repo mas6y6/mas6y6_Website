@@ -76,4 +76,26 @@ document.addEventListener('DOMContentLoaded', () => {
             behavior: "smooth"
         });
     })
+
+    // People
+
+    document.querySelector("#people-batista").addEventListener('click', () => {
+        window.open("https://batistacakewalk.parafieldstudios.com/home");
+    });
+
+    document.querySelector("#people-st6").addEventListener('click', () => {
+        window.open("https://technologicalshadows-home.carrd.co/")
+    });
+
+    document.querySelector("#people-malachi196").addEventListener('click', () => {
+        window.open("https://discordapp.com/users/1166148454603571280");
+    });
+
+    document.querySelector("#people-mushy").addEventListener('click', () => {
+        window.open("https://discordapp.com/users/1016878311005225032");
+    });
+
+    document.querySelector("#people-notdef").addEventListener('click', () => {
+        window.open("https://discordapp.com/users/1278494594560032849");
+    });
 })
