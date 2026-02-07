@@ -696,9 +696,13 @@ div.cool-people-box.scroll-on-active {
     div.language-box {
         flex-direction: column;
     }
+
+    div.banner img {
+        height: 30%;
+    }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 980px) {
     div.social-box img {
         height: 70%;
         width: auto;
@@ -708,24 +712,8 @@ div.cool-people-box.scroll-on-active {
         display: none;
     }
 
-    div.people {
-        width: 20vh;
-        height: 15vw;
-    }
-
-    div.people img {
-        height: 70%; !important;
-        width: auto;
-    }
-
-    div.people h2 {
-        font-size: 0.9rem;
-    }
-}
-
-@media (max-width: 800px) {
-    div.people h2 {
-        font-size: 0.6rem;
+    div.people-links {
+        flex-direction: column;
     }
 }
 
