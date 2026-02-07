@@ -681,8 +681,23 @@ div.cool-people-box.scroll-on-active {
 }
 
 @media (max-width: 800px) {
+    div.introduction-box {
+        flex-direction: column;
+    }
+
     div.introduction-box img {
-        display: none;
+        opacity: 0;
+        transform: translateY(-100px);
+        transition: transform 1s ease, opacity 1s ease;
+    }
+
+    div.introduction-box img.scroll-on-active {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg);
+    }
+
+    div.introduction-box img {
+        height: 15vh;
     }
 
     div.language-box img {
