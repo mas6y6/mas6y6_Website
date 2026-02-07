@@ -710,7 +710,7 @@ div.cool-people-box.scroll-on-active {
 
 @media (max-width: 980px) {
     div.social-box img {
-        height: 70%;
+        height: 50%;
         width: auto;
     }
 
