@@ -545,6 +545,37 @@ div.social-box img {
     }
 }
 
+@media (max-width: 800px) {
+    div.introduction-box img {
+        display: none;
+    }
+
+    div.language-box img {
+        height: 100px;
+        width: auto;
+    }
+
+    div.language-box svg {
+        height: 100px;
+        width: auto;
+    }
+
+    div.language-box {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 1000px) {
+    div.social-box img {
+        height: 70%;
+        width: auto;
+    }
+
+    div.social-box h2 {
+        display: none;
+    }
+}
+
 @media (max-width: 1400px) {
     div.language-box .internal p.learning {
         font-size: 15px;
@@ -563,6 +594,13 @@ div.social-box img {
 }
 
 @media (max-width: 1000px) {
+    div.social-box {
+        width: 100px;
+        height: 100px;
+    }
+
+
+
     div.stats embed {
         height: 100%;
         width: 100%;
