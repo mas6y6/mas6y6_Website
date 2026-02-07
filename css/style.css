@@ -304,6 +304,8 @@ div.language-box .progress {
     display: flex;
     width: 100%;
     height: 10px;
+
+    border-radius: 50px;
 }
 
 div.language-box img {
@@ -691,6 +693,10 @@ div.cool-people-box.scroll-on-active {
     div.language-box svg {
         height: 100px;
         width: auto;
+    }
+
+    div.language-box .progress {
+        background-color: rgba(0, 0, 0, 0.34);
     }
 
     div.language-box {
