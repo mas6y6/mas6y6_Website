@@ -176,6 +176,24 @@ div.introduction-box {
     transform: translateY(50px);
 
     transition: 1s ease;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+div.introduction-box img {
+    height: 150px;
+    width: auto;
+
+    opacity: 0;
+    transform: translateY(10px) rotate(90deg);
+    transition: transform 1s ease, opacity 1s ease;
+}
+
+div.introduction-box img.scroll-on-active {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
 }
 
 div.introduction-box.scroll-on-active {
@@ -344,6 +362,52 @@ div.language-box .internal .progress .progress-bar.scroll-on.scroll-on-active.ru
     width: 30%;
 }
 
+div.stats-box {
+    width: calc(100% - 5% - 5%);
+    margin: 5%;
+    padding: 50px;
+    border-radius: 15px;
+    background-image: linear-gradient(to top, rgba(85, 0, 255, 0.27), #100017);
+    border-width: 1px;
+    border-style: solid;
+    border-color: #5500ff;
+
+    opacity: 0;
+    transform: translateY(50px);
+
+    transition: 1s ease;
+}
+
+div.stats-box.scroll-on-active {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+div.stats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50%;
+    margin-top: 3%;
+}
+
+div.stats embed {
+    height: 50%;
+    width: 50%;
+}
+
+div.stats embed.scroll-on {
+    transform: translateX(-50px);
+    opacity: 0;
+    transition: 1s ease;
+}
+
+div.stats embed.scroll-on-active {
+    transform: translateX(0);
+    opacity: 1;
+}
+
 div.social-links {
     display: flex;
     align-items: center;
@@ -362,11 +426,10 @@ div.social-box {
     align-items: center;
     justify-content: center;
 
-    /* Shadow variables */
-    --shadow-color: rgba(0,0,0,0.2); /* fallback color */
+    --shadow-color: rgba(0,0,0,0.2);
     box-shadow: 0 10px var(--shadow-color);
 
-    transition: all 0.3s ease; /* smooth hover animation */
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
     cursor: pointer;
 }
 
@@ -417,9 +480,7 @@ div.social-box img {
     width: auto;
 }
 
-
-/* ---------------------- RESPONSIVE MOBILE ---------------------- */
-@media (max-width: 768px) {
+@media (max-width: 1400px) {
     .nav-toggle {
         display: block;
     }
@@ -427,7 +488,7 @@ div.social-box img {
     .nav-buttons {
         position: fixed;
         top: 0;
-        right: -100%; /* Hidden by default */
+        right: -100%;
         width: 250px;
         height: 100vh;
         background-color: rgba(0, 0, 0, 0.95);
@@ -458,27 +519,83 @@ div.social-box img {
         height: 50px;
     }
 
-    div.banner img {
-        height: 30%;
-        max-height: 100px;
+    div.banner {
+        height: 25vh;
     }
 
-    div.banner {
-        height: 40vh; /* smaller banner for mobile */
+    div.banner img {
+        height: 50%;
+        max-height: 80px;
+    }
+
+    .nav-title {
+        display: none;
+    }
+
+    div.stats {
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        margin-top: 3%;
+    }
+
+    div.stats embed {
+        height: 60%;
+        width: 60%;
     }
 }
 
-@media (max-width: 480px) {
-    .nav-title {
-        display: none; /* hide text if super small screens */
-    }
+@media (max-width: 1400px) {
+    div.language-box .internal p.learning {
+        font-size: 15px;
+        margin-top: 10px;
+        background-color: #ef6429;
+        width: 100px;
+        height: 25px;
+        border-radius: 15px;
 
-    div.banner {
-        height: 35vh;
-    }
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-    div.banner img {
-        height: 25%;
-        max-height: 80px;
+        margin-bottom: 10px;
     }
+}
+
+@media (max-width: 1000px) {
+    div.stats embed {
+        height: 100%;
+        width: 100%;
+    }
+}
+
+footer {
+    background-color: #000000;
+    height: 20vh;
+    padding: 25px;
+}
+
+.back-to-top-btn {
+    width: calc(100% - 5% - 5%);
+    margin: 1% 5% 5%;
+    height: 5vh;
+    border-radius: 15px;
+    background-color: #270081;
+    background-image: linear-gradient(to top, rgba(85, 0, 255, 0.27), #100017);
+    border-width: 1px;
+    border-style: solid;
+    border-color: #5500ff;
+
+    box-shadow: 0 10px #270081;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.back-to-top-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px #270081;
+}
+
+.back-to-top-btn:active {
+    transform: translateY(5px);
+    box-shadow: 0 0 #270081;
 }

@@ -56,3 +56,24 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener("scroll", handleScrollAnimation);
     window.addEventListener("DOMContentLoaded", handleScrollAnimation);
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('social-discord').addEventListener('click', () => {
+        window.open("https://discordapp.com/users/1165046623299174531")
+    });
+
+    document.getElementById('social-github').addEventListener('click', () => {
+        window.open("https://github.com/mas6y6")
+    });
+
+    document.getElementById('social-youtube').addEventListener('click', () => {
+        window.open("https://www.youtube.com/@mas6y6")
+    });
+
+    document.getElementById('back-to-top').addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    })
+})
