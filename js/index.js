@@ -98,4 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector("#people-notdef").addEventListener('click', () => {
         window.open("https://discordapp.com/users/1278494594560032849");
     });
+
+    document.querySelector("#people-kebin").addEventListener('click', () => {
+        window.open("https://github.com/shadowmewtwogx2020")
+    })
 })

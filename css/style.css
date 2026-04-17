@@ -562,6 +562,20 @@ div.people#people-notdef h2 {
     color: white;
 }
 
+div.people#people-kebin {
+    --shadow-color: #000000;
+    background-image: linear-gradient(to top, rgb(47 47 47), #000000);
+    border-color: #646464;
+}
+
+div.people#people-kebin img {
+    border-color: #000000;
+}
+
+div.people#people-kebin h2 {
+    color: white;
+}
+
 div.people:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px var(--shadow-color);
