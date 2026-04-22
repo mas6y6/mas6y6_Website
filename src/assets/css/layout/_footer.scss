@@ -1,0 +1,30 @@
+footer {
+    background-color: #000000;
+    height: 20vh;
+    padding: 30px;
+}
+
+.back-to-top-btn {
+    width: calc(100% - 5% - 5%);
+    margin: 1% 5% 5%;
+    height: 5vh;
+    border-radius: 15px;
+    background-color: #270081;
+    background-image: linear-gradient(to top, rgba(85, 0, 255, 0.27), #100017);
+    border-width: 1px;
+    border-style: solid;
+    border-color: #5500ff;
+
+    box-shadow: 0 10px #270081;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px #270081;
+    }
+
+    &:active {
+        transform: translateY(5px);
+        box-shadow: 0 0 #270081;
+    }
+}

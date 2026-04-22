@@ -1,0 +1,24 @@
+html {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #000 0%, #000 50%, #000 60%, #0b0023 100%) no-repeat;
+}
+
+* {
+    font-family: var(--font), sans-serif;
+    box-sizing: border-box;
+    color: white
+}
+
+p {
+    font-size: 17px;
+}
+
+hr {
+    color: rgba(0, 0, 0, 0.5);
+}

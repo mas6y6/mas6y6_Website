@@ -1,0 +1,46 @@
+div.banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(-90deg, #9200ff 0%, #00000000 20%, #00000000 80%, #0071ff 100%);
+    width: 100%;
+    height: 40vh;
+    position: relative;
+    opacity: 0;
+    transition: opacity 1s ease;
+
+    &.scroll-on-active {
+        opacity: 1;
+
+        img {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    img {
+        opacity: 0;
+        height: 40%;
+        max-height: 150px;
+        width: auto;
+        transform: translateY(-20px);
+        transition: transform 1s ease, opacity 1s ease;
+    }
+}
+
+@media (max-width: 1400px) {
+    div.banner {
+        height: 25vh;
+
+        img {
+            height: 50%;
+            max-height: 80px;
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    div.banner img {
+        height: 30%;
+    }
+}

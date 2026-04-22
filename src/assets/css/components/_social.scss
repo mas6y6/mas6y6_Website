@@ -1,0 +1,91 @@
+div.social-links {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+}
+
+div.social-box {
+    width: 150px;
+    height: 170px;
+    border-radius: 15px;
+    border: 1px solid;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px var(--shadow-color);
+
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px var(--shadow-color);
+    }
+
+    &:active {
+        transform: translateY(5px);
+        box-shadow: 0 5px var(--shadow-color);
+    }
+
+    &.github {
+        --shadow-color: #cccccc;
+        background-image: linear-gradient(to top, rgb(255, 255, 255), #b0b0b0);
+        border-color: #ffffff;
+    }
+
+    &.discord {
+        --shadow-color: #5865f2;
+        background-image: linear-gradient(to top, #7289da, #5865f2);
+        border-color: #5865f2;
+
+        h2 {
+            color: white;
+        }
+    }
+
+    &.youtube {
+        --shadow-color: #7c0000;
+        background-image: linear-gradient(to top, #ff0000, #b20000);
+        border-color: #ff0000;
+
+        h2 {
+            color: white;
+        }
+    }
+
+    h2 {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        color: black;
+    }
+
+    img {
+        height: 80px;
+        width: auto;
+    }
+}
+
+@media (max-width: 980px) {
+    div.social-box {
+        img {
+            height: 50%;
+            width: auto;
+        }
+
+        h2 {
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 1000px) {
+    div.social-box {
+        width: 100px;
+        height: 100px;
+    }
+}

@@ -1,0 +1,12 @@
+@use "base/variables" as *;
+@use "base/base";
+
+@use "layout/nav";
+@use "layout/footer";
+
+@use "components/banner";
+@use "components/introduction";
+@use "components/skills";
+@use "components/stats";
+@use "components/social";
+@use "components/people";
