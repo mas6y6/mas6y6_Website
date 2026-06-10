@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, onUnmounted } from 'vue'
-import '../assets/css/projects.scss'
+import '../assets/css/master.scss'
 
 const handleScrollAnimation = () => {
   const scrollElements = document.querySelectorAll(".scroll-on")
@@ -29,11 +29,13 @@ onUnmounted(() => {
   </div>
 
   <div class="introduction-box scroll-on">
-    <h1>Projects</h1>
-    <p>This is my projects section where I post my projects and things and mainly the stuff I work on.</p>
-    <hr>
-    <p>Right now it's empty since I mainly help out <a href="https://www.parafieldstudios.com">Parafield Studios</a> at the moment. But I do work on my own projects, though.</p>
-    <p>I'll put them here once I am ready :3</p>
+    <div class="text-content">
+      <h1>Projects</h1>
+      <p>This is my projects section where I post my projects and things and mainly the stuff I work on.</p>
+      <hr>
+      <p>Right now it's empty since I mainly help out <a href="https://www.parafieldstudios.com">Parafield Studios</a> at the moment. But I do work on my own projects, though.</p>
+      <p>I'll put them here once I am ready :3</p>
+    </div>
   </div>
 </template>
 

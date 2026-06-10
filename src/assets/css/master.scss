@@ -176,23 +176,25 @@ div.introduction-box {
     transform: translateY(50px);
 
     transition: 1s ease;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 div.introduction-box hr {
-    margin: 2rem 0;
+    margin: 1rem 0;
 }
 
 div.introduction-box p {
     width: 100%;
-    text-align: center;
+    text-align: left;
     line-height: 1.6;
-    margin-bottom: 1rem;
 }
 
 div.introduction-box h1 {
     width: 100%;
-    text-align: center;
-    margin-bottom: 1.5rem;
+    text-align: left;
 }
 
 div.introduction-box.scroll-on-active {
@@ -470,6 +472,16 @@ div.social-box.youtube h2 {
     color: white;
 }
 
+div.social-box.bluesky {
+    --shadow-color: #589bf2;
+    background-image: linear-gradient(to top, #72a6da, #66b4f3);
+    border-color: #589bf2;
+}
+
+div.social-box.bluesky h2 {
+    color: white;
+}
+
 div.social-box h2 {
     margin-top: 5px;
     margin-bottom: 5px;
@@ -682,6 +694,7 @@ div.cool-people-box.scroll-on-active {
 @media (max-width: 800px) {
     div.introduction-box {
         padding: 1.5rem;
+        flex-direction: column;
     }
 
     div.introduction-box p {

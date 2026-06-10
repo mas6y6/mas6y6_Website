@@ -13,6 +13,7 @@ div.introduction-box {
 
     transition: 1s ease;
 
+    display: flex;
     align-items: center;
     gap: 20px;
 
@@ -24,15 +25,12 @@ div.introduction-box {
     img {
         height: 150px;
         width: auto;
+    }
 
-        opacity: 0;
-        transform: translateY(10px) rotate(90deg);
-        transition: transform 1s ease, opacity 1s ease;
-
-        &.scroll-on-active {
-            opacity: 1;
-            transform: translateY(0) rotate(0deg);
-        }
+    .text-content {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
     }
 }
 

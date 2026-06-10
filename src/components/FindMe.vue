@@ -24,6 +24,11 @@ const openLink = (url) => {
         <img src="/assets/socials/discord.png" alt="Discord" />
         <h2>Discord</h2>
       </div>
+
+      <div class="social-box bluesky" id="social-bluesky" @click="openLink('https://bsky.app/profile/mas6y6.com')">
+        <img src="/assets/socials/bluesky.png" alt="bluesky" />
+        <h2>Bluesky</h2>
+      </div>
     </div>
   </div>
 </template>

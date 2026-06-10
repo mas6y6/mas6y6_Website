@@ -9,14 +9,14 @@ const openLink = (url) => {
     <h1>Cool people</h1>
     <p>These people have pushed me so far to reach this point. I appreciate them and wouldn't be here without them.</p>
     <div class="people-links">
-      <div class="people" id="people-batista" @click="openLink('https://batistacakewalk.parafieldstudios.com/home')">
+      <div class="people" id="people-batista" @click="openLink('https://batista.parafieldstudios.com/')">
         <img src="/assets/people/batista.jpg" alt="Discord" />
         <h2>Batista</h2>
       </div>
 
       <div class="people" id="people-st6" @click="openLink('https://technologicalshadows-home.carrd.co/')">
         <img src="/assets/people/st6.png" alt="Discord" />
-        <h2>ST6</h2>
+        <h2>EclipseTech4820</h2>
       </div>
 
       <div class="people" id="people-malachi196" @click="openLink('https://discordapp.com/users/1166148454603571280')">
