@@ -1,8 +1,9 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 
 const router = useRouter()
+const route = useRoute()
 const isScrolled = ref(false)
 const isNavActive = ref(false)
 
@@ -40,8 +41,8 @@ onUnmounted(() => {
     </button>
 
     <div class="nav-buttons" :class="{ 'active': isNavActive }">
-      <button class="nav-button" @click="navigateTo('/')">Home</button>
-      <button class="nav-button" @click="navigateTo('/projects')">Projects</button>
+      <button class="nav-button scroll-on" :class="{ 'active': route.path === '/' }" @click="navigateTo('/')">Home</button>
+      <button class="nav-button scroll-on" :class="{ 'active': route.path === '/projects' }" @click="navigateTo('/projects')">Projects</button>
     </div>
   </nav>
 </template>

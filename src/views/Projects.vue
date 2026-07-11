@@ -1,6 +1,5 @@
 <script setup>
 import { onMounted, onUnmounted } from 'vue'
-import '../assets/css/master.scss'
 
 const handleScrollAnimation = () => {
   const scrollElements = document.querySelectorAll(".scroll-on")

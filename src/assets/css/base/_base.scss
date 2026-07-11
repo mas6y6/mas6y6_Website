@@ -19,6 +19,13 @@ p {
     font-size: 17px;
 }
 
+p.warning {
+    background: rgb(255 213 0);
+    border-radius: 10px;
+    color: black;
+    padding: 10px;
+}
+
 hr {
     color: rgba(0, 0, 0, 0.5);
 }

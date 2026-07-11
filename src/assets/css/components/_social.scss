@@ -1,3 +1,24 @@
+div.find-me-box {
+    width: calc(100% - 5% - 5%);
+    margin: 5%;
+    padding: 50px;
+    border-radius: 15px;
+    background-image: linear-gradient(to top, rgba(0, 208, 255, 0.29), #100017);
+    border-width: 1px;
+    border-style: solid;
+    border-color: #00d0ff;
+
+    opacity: 0;
+    transform: translateY(50px);
+
+    transition: 1s ease;
+
+    &.scroll-on-active {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 div.social-links {
     display: flex;
     align-items: center;
@@ -55,6 +76,20 @@ div.social-box {
 
         h2 {
             color: white;
+        }
+    }
+
+    &.twitter {
+        --shadow-color: #589bf2;
+        background-image: linear-gradient(to top, #72a6da, #66b4f3);
+        border-color: #589bf2;
+
+        h2 {
+            color: white;
+        }
+
+        img {
+            filter: brightness(0) invert(1);
         }
     }
 

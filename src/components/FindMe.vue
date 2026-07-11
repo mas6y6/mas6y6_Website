@@ -7,7 +7,17 @@ const openLink = (url) => {
 <template>
   <div class="find-me-box scroll-on">
     <h1>Where you can find me</h1>
-    <p>I don't have many social platforms, but my main platforms are listed below.</p>
+
+    <p>
+      These are my social platforms that I use to connect with others.
+    </p>
+
+    <p class="warning">
+      As of 7/9/26 my bluesky account has been terminated. As of result of the stupid age verification policy. <br/>
+      I am currently looking for a new platform to use. So for now, I'll have to be using twitter.
+
+      <br/><br/>And no I am not calling it "X"
+    </p>
 
     <div class="social-links">
       <div class="social-box github" id="social-github" @click="openLink('https://github.com/mas6y6')">
@@ -25,9 +35,9 @@ const openLink = (url) => {
         <h2>Discord</h2>
       </div>
 
-      <div class="social-box bluesky" id="social-bluesky" @click="openLink('https://bsky.app/profile/mas6y6.com')">
-        <img src="/assets/socials/bluesky.png" alt="bluesky" />
-        <h2>Bluesky</h2>
+      <div class="social-box twitter" id="social-twitter" @click="openLink('https://x.com/mas6y6')">
+        <img src="/assets/socials/twitter.svg" alt="bluesky" />
+        <h2>Twitter</h2>
       </div>
     </div>
   </div>
