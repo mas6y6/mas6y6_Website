@@ -36,8 +36,23 @@ const openLink = (url) => {
       </div>
 
       <div class="social-box twitter" id="social-twitter" @click="openLink('https://x.com/mas6y6')">
-        <img src="/assets/socials/twitter.svg" alt="bluesky" />
+        <img src="/assets/socials/twitter.svg" alt="Twitter" />
         <h2>Twitter</h2>
+      </div>
+
+      <div class="social-box threads" id="social-threads" @click="openLink('https://www.threads.com/@mas6y6')">
+        <img src="/assets/socials/threads.svg" alt="Threads" />
+        <h2>Threads</h2>
+      </div>
+
+      <div class="social-box tumblr" id="social-tumblr" @click="openLink('https://www.tumblr.com/mas6y6')">
+        <img src="/assets/socials/tumblr.svg" alt="tumblr" />
+        <h2>Tumblr</h2>
+      </div>
+
+      <div class="social-box twitch" id="social-twitch" @click="openLink('https://www.twitch.tv/mas6y6')">
+        <img src="/assets/socials/twitch.svg" alt="twitch" />
+        <h2>Twitch</h2>
       </div>
     </div>
   </div>
