@@ -59,6 +59,13 @@ div.people {
         h2 { color: white; }
     }
 
+    &#people-tech {
+        --shadow-color: #002581;
+        background-image: linear-gradient(to top, rgb(0 20 98), #000000);
+        border-color: #0015ff;
+        h2 { color: white; }
+    }
+
     &#people-st6 {
         --shadow-color: #270081;
         background-image: linear-gradient(to top, rgb(72, 0, 255), #763fff);
