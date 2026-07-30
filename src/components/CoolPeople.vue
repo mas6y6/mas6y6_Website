@@ -10,7 +10,7 @@ const openLink = (url) => {
     <p>These people have pushed me so far to reach this point. I appreciate them and wouldn't be here without them.</p>
     <div class="people-links">
       <div class="people" id="people-tech" @click="openLink('https://technologicalbyte.com/')">
-        <img src="/assets/people/tech.webp" alt="TechnologicalByte" />
+        <img src="/assets/people/tech.jpg" alt="TechnologicalByte" />
         <h2>TechnologicalByte</h2>
       </div>
 
