@@ -1,5 +1,8 @@
+<script setup lang="ts">
+import BannerText from "./BannerText.vue";
+</script>
 <template>
   <div class="banner scroll-on">
-    <img src="/assets/banner.png" alt="banner" class="banner-image" id="banner-image">
+    <BannerText />
   </div>
 </template>

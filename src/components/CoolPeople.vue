@@ -1,5 +1,5 @@
-<script setup>
-const openLink = (url) => {
+<script setup lang="ts">
+const openLink = (url: string) => {
   window.open(url)
 }
 </script>

@@ -1,8 +1,8 @@
-<script setup>
+<script setup lang="ts">
   import {computed, ref} from "vue";
   import { useMouseInElement } from '@vueuse/core'
 
-  const icon = ref(null);
+  const icon = ref<HTMLElement | null>(null);
   const mouseIn = useMouseInElement(icon);
 
   const rotationTransform = computed(() => {

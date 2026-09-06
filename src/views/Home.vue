@@ -1,11 +1,11 @@
-<script setup>
+<script setup lang="ts">
 import { onMounted, onUnmounted } from 'vue'
 import Banner from '../components/Banner.vue'
 import Introduction from '../components/Introduction.vue'
 import Skills from '../components/Skills.vue'
 import CoolPeople from '../components/CoolPeople.vue'
 import Statistics from '../components/Statistics.vue'
-import FindMe from '../components/FindMe.vue'
+import Socials from '../components/Socials.vue'
 import BackToTop from '../components/BackToTop.vue'
 
 const handleScrollAnimation = () => {
@@ -35,7 +35,7 @@ onUnmounted(() => {
   <Skills />
   <CoolPeople />
   <Statistics />
-  <FindMe />
+  <Socials />
   <BackToTop />
 </template>
 

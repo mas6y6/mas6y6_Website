@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 
@@ -15,7 +15,7 @@ const toggleNav = () => {
   isNavActive.value = !isNavActive.value
 }
 
-const navigateTo = (path) => {
+const navigateTo = (path: string) => {
   isNavActive.value = false
   router.push(path)
 }

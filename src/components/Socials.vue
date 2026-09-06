@@ -1,5 +1,5 @@
-<script setup>
-const openLink = (url) => {
+<script setup lang="ts">
+const openLink = (url: string) => {
   window.open(url)
 }
 </script>
@@ -30,7 +30,7 @@ const openLink = (url) => {
         <h2>Youtube</h2>
       </div>
 
-      <div class="social-box discord" id="social-discord" @click="openLink('https://discordapp.com/users/1165046623299174531')">
+      <div class="social-box discord" id="social-discord" @click="openLink('https://discord.gg/RgXYKeJza6')">
         <img src="/assets/socials/discord.png" alt="Discord" />
         <h2>Discord</h2>
       </div>
