@@ -2,19 +2,16 @@ div.banner {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: linear-gradient(-90deg, #9200ff 0%, #00000000 20%, #00000000 80%, #0071ff 100%);
     width: 100%;
     height: 40vh;
     position: relative;
-    opacity: 0;
+    opacity: 1;
     transition: opacity 1s ease;
 
     &.scroll-on-active {
-        opacity: 1;
-
         img {
-            transform: translateY(0);
             opacity: 1;
+            transform: translateY(0);
         }
     }
 
