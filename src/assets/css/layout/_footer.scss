@@ -1,7 +1,47 @@
 footer {
     background-color: #000000;
-    height: 20vh;
+    height: 15vh;
     padding: 30px;
+
+    p {
+        margin: 5px 5px 5px 0;
+        font-size: 0.9rem;
+    }
+}
+
+.cloudflare-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, .18) !important;
+    font-family: var(--font);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    transition: color .2s;
+
+    & span {
+        color: rgba(255, 255, 255, .18) !important;
+    }
+
+    &:hover {
+        color: rgba(255, 255, 255, .18) !important;
+
+        img {
+            opacity: .55;
+        }
+
+        & span {
+            color: rgba(255, 255, 255, .40) !important;
+        }
+    }
+
+    img {
+        height: 30px;
+        opacity: .3;
+        filter: invert(1);
+        transition: opacity;
+    }
 }
 
 .back-to-top-btn {

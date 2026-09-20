@@ -15,7 +15,7 @@ const openLink = (url: string) => {
       </div>
 
       <div class="people" id="people-batista" @click="openLink('https://batista.parafieldstudios.com/')">
-        <img src="/assets/people/batista.jpg" alt="Batista" />
+        <img src="/assets/people/batista.jpg" alt="BatistaCakewalk" />
         <h2>Batista</h2>
       </div>
 
@@ -24,8 +24,8 @@ const openLink = (url: string) => {
         <h2>EclipseTech4820</h2>
       </div>
 
-      <div class="people" id="people-malachi196" @click="openLink('https://discordapp.com/users/1166148454603571280')">
-        <img src="/assets/people/malachi196.png" alt="Malach" />
+      <div class="people" id="people-malachi196" @click="openLink('https://github.com/malachi196')">
+        <img src="/assets/people/malachi196.png" alt="malachi196" />
         <h2>malachi196</h2>
       </div>
 
@@ -39,9 +39,9 @@ const openLink = (url: string) => {
         <h2>notdefyingphysics</h2>
       </div>
 
-      <div class="people" id="people-kebin" @click="openLink('https://github.com/shadowmewtwogx2020')">
-        <img src="/assets/people/kebin.png" alt="WavierGolem5727" />
-        <h2>WavierGolem5727</h2>
+      <div class="people" id="people-dontluck2" @click="openLink('https://www.youtube.com/@DontLuck2Music')">
+        <img src="/assets/people/dontluck2.jpg" alt="Dontluck2" />
+        <h2>DontLuck2</h2>
       </div>
     </div>
   </div>

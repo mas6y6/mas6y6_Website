@@ -1,7 +1,10 @@
 <template>
   <footer>
-    <p>Made by <a href="https://mas6y6.com">mas6y6</a></p>
-    <p>Hosted by <a href="https://pages.cloudflare.com/">Cloudflare pages</a></p>
+    <p><a href="https://github.com/mas6y6/mas6y6_Website">Github</a></p>
+    <a href="https://pages.cloudflare.com/" target="_blank" class="cloudflare-badge">
+      <span>Hosted via Cloudflare Pages</span>
+      <img src="/assets/cloudflare.png" alt="Cloudflare">
+    </a>
   </footer>
 </template>
 
