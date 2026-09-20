@@ -12,12 +12,12 @@ const openLink = (url: string) => {
       These are my social platforms that I use to connect with others.
     </p>
 
-    <p class="warning">
+    <!-- <p class="warning">
       As of 7/9/26 my bluesky account has been terminated. As of result of the stupid age verification policy. <br/>
       I am currently looking for a new platform to use. So for now, I'll have to be using twitter.
 
       <br/><br/>And no I am not calling it "X"
-    </p>
+    </p> -->
 
     <div class="social-links">
       <div class="social-box github" id="social-github" @click="openLink('https://github.com/mas6y6')">
