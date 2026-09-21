@@ -7,6 +7,7 @@ import CoolPeople from '../components/CoolPeople.vue'
 import Statistics from '../components/Statistics.vue'
 import Socials from '../components/Socials.vue'
 import BackToTop from '../components/BackToTop.vue'
+import Software from "../components/Software.vue";
 
 const handleScrollAnimation = () => {
   const scrollElements = document.querySelectorAll(".scroll-on")
@@ -33,6 +34,7 @@ onUnmounted(() => {
   <Banner />
   <Introduction />
   <Skills />
+  <Software />
   <CoolPeople />
   <Statistics />
   <Socials />

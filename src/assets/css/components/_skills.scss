@@ -17,6 +17,18 @@ div.skills-box {
         transform: translateY(0);
         opacity: 1;
     }
+
+    .scrolltext {
+        opacity: 0;
+        transform: translateX(-100px);
+
+        &.scroll-on-active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        transition: 1s ease;
+    }
 }
 
 div.language-box {
@@ -81,29 +93,33 @@ div.language-box {
                 }
 
                 &.scroll-on-active {
+                    &.vue {
+                        background-color: #40b782;
+                        width: 100%;
+                    }
                     &.python {
                         background-color: #0080ff;
                         width: 100%;
+                    }
+                    &.react {
+                        background-color: #60d8f9;
+                        width: 80%;
                     }
                     &.html_css {
                         background-image: linear-gradient(to right, #ef6429, #0080ff);
                         width: 100%;
                     }
+                    &.typescript {
+                        background-color: #0079ca;
+                        width: 100%;
+                    }
                     &.javascript {
                         background-color: #eed94e;
-                        width: 90%;
+                        width: 100%;
                     }
                     &.java {
                         background-color: #e82d2e;
                         width: 80%;
-                    }
-                    &.kotlin {
-                        background-color: #c511df;
-                        width: 50%;
-                    }
-                    &.sql {
-                        background-color: #4fe4fd;
-                        width: 50%;
                     }
                     &.rust {
                         background-color: #ff6e00;
