@@ -52,6 +52,8 @@ onMounted(() => {
   window.addEventListener("pointermove", handlePointerMove, { passive: true });
   window.addEventListener("touchmove", handleTouchMove, { passive: true });
   window.addEventListener("resize", resizeCanvas, { passive: true });
+  window.addEventListener("orientationchange", resizeCanvas, { passive: true });
+  window.visualViewport?.addEventListener("resize", resizeCanvas, { passive: true });
 
   state.startTime = performance.now();
   frameId = requestAnimationFrame(renderFrame);
@@ -61,6 +63,8 @@ onBeforeUnmount(() => {
   window.removeEventListener("pointermove", handlePointerMove);
   window.removeEventListener("touchmove", handleTouchMove);
   window.removeEventListener("resize", resizeCanvas);
+  window.removeEventListener("orientationchange", resizeCanvas);
+  window.visualViewport?.removeEventListener("resize", resizeCanvas);
 
   if (frameId) {
     cancelAnimationFrame(frameId);
@@ -151,13 +155,15 @@ function compileShader(type, source) {
 }
 
 function resizeCanvas() {
-  if (!gl || !canvasRef.value || !holderRef.value) return;
+  if (!gl || !canvasRef.value) return;
 
-  const width = holderRef.value.offsetWidth || window.innerWidth;
-  const height = holderRef.value.offsetHeight || window.innerHeight;
+  devicePixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
 
-  canvasRef.value.width = width * devicePixelRatio;
-  canvasRef.value.height = height * devicePixelRatio;
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+
+  canvasRef.value.width = Math.round(width * devicePixelRatio);
+  canvasRef.value.height = Math.round(height * devicePixelRatio);
   canvasRef.value.style.width = `${width}px`;
   canvasRef.value.style.height = `${height}px`;
 

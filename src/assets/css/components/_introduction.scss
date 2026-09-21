@@ -59,15 +59,7 @@ div.introduction-box {
         }
 
         img {
-            opacity: 0;
-            transform: translateY(-100px);
-            transition: transform 1s ease, opacity 1s ease;
-            height: 15vh;
-
-            &.scroll-on-active {
-                opacity: 1;
-                transform: translateY(0) rotate(0deg);
-            }
+            display: none;
         }
     }
 }

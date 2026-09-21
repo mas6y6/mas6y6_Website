@@ -1,0 +1,129 @@
+div.programs_box {
+  width: calc(100% - 5% - 5%);
+  margin: 5%;
+  padding: 50px;
+  border-radius: 15px;
+  background-image: linear-gradient(to top, rgb(140 0 255 / 0.27), #100017);
+  border-width: 1px;
+  border-style: solid;
+  border-color: #8c00ff;
+
+  opacity: 0;
+  transform: translateY(50px);
+
+  transition: 1s ease;
+
+  &.scroll-on-active {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .scrolltext {
+    opacity: 0;
+    transform: translateX(-100px);
+
+    &.scroll-on-active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    transition: 1s ease;
+  }
+}
+
+.software-icon {
+  --shadow-color: #000000;
+
+  display: flex;
+  flex-direction: column;
+
+  /* Responsive card size */
+  width: clamp(110px, 14vw, 150px);
+  height: clamp(110px, 14vw, 150px);
+  margin: clamp(8px, 2%, 16px);
+
+  border-radius: clamp(10px, 1.5vw, 15px);
+  background-color: #000000;
+
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  text-decoration: none;
+  overflow: hidden;
+
+  box-shadow: 0 10px var(--shadow-color);
+
+  transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+
+  img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  p {
+    width: 90%;
+    margin: clamp(5px, 1vw, 10px) 0 0;
+
+    /* Scales with viewport */
+    font-size: clamp(0.75rem, 1.5vw, 1rem);
+    line-height: 1.1;
+
+    /* Prevent long names from breaking the card */
+    white-space: normal;
+    overflow-wrap: break-word;
+
+    &.black-text {
+      color: #000000;
+    }
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px var(--shadow-color);
+  }
+
+  &:active {
+    transform: translateY(5px);
+    box-shadow: 0 5px var(--shadow-color);
+  }
+
+  &#webstorm {
+    background-color: #07c3f2;
+    --shadow-color: #008bb5;
+  }
+
+  &#intellij {
+    background-color: #ffa142;
+    --shadow-color: #c66b00;
+  }
+
+  &#pycharm {
+    background-color: #21d789;
+    --shadow-color: #12945a;
+  }
+
+  &#clion {
+    background-color: #c7005b;
+    --shadow-color: #79103d;
+  }
+
+  &#rustrover {
+    background-color: #fb620d;
+    --shadow-color: #a1400a;
+  }
+
+  &#affinity {
+    background-color: #a6ef74;
+    --shadow-color: #5e8842;
+  }
+
+  &#vscode {
+    background-color: #07a0f2;
+    --shadow-color: #005bb5;
+  }
+}
