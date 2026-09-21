@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted } from 'vue'
 import Banner from '../components/Banner.vue'
-import Introduction from '../components/Introduction.vue'
-import Skills from '../components/Skills.vue'
-import CoolPeople from '../components/CoolPeople.vue'
-import Statistics from '../components/Statistics.vue'
-import Socials from '../components/Socials.vue'
+import Introduction from '../components/boxes/Introduction.vue'
+import Skills from '../components/boxes/Skills.vue'
+import CoolPeople from '../components/boxes/CoolPeople.vue'
+import Statistics from '../components/boxes/Statistics.vue'
+import Socials from '../components/boxes/Socials.vue'
 import BackToTop from '../components/BackToTop.vue'
-import Software from "../components/Software.vue";
+import Software from "../components/boxes/Software.vue";
 
 const handleScrollAnimation = () => {
   const scrollElements = document.querySelectorAll(".scroll-on")

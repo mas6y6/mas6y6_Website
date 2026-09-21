@@ -1,4 +1,4 @@
-<!-- https://openbackgrounds.com -->
+<!-- https://openbackgrrounds.com -->
 
 <template>
   <div ref="holderRef" class="absolute inset-0 pointer-events-none">
@@ -18,6 +18,7 @@ let gl = null;
 let program = null;
 let frameId = null;
 let devicePixelRatio = 1;
+let resizeTimer = null;
 
 const pointer = {
   x: 0.5,
@@ -51,9 +52,9 @@ onMounted(() => {
 
   window.addEventListener("pointermove", handlePointerMove, { passive: true });
   window.addEventListener("touchmove", handleTouchMove, { passive: true });
-  window.addEventListener("resize", resizeCanvas, { passive: true });
-  window.addEventListener("orientationchange", resizeCanvas, { passive: true });
-  window.visualViewport?.addEventListener("resize", resizeCanvas, { passive: true });
+  window.addEventListener("resize", scheduleResize, { passive: true });
+  window.addEventListener("orientationchange", scheduleResize, { passive: true });
+  window.visualViewport?.addEventListener("resize", scheduleResize, { passive: true });
 
   state.startTime = performance.now();
   frameId = requestAnimationFrame(renderFrame);
@@ -62,9 +63,14 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener("pointermove", handlePointerMove);
   window.removeEventListener("touchmove", handleTouchMove);
-  window.removeEventListener("resize", resizeCanvas);
-  window.removeEventListener("orientationchange", resizeCanvas);
-  window.visualViewport?.removeEventListener("resize", resizeCanvas);
+  window.removeEventListener("resize", scheduleResize);
+  window.removeEventListener("orientationchange", scheduleResize);
+  window.visualViewport?.removeEventListener("resize", scheduleResize);
+
+  if (resizeTimer) {
+    window.clearTimeout(resizeTimer);
+    resizeTimer = null;
+  }
 
   if (frameId) {
     cancelAnimationFrame(frameId);
@@ -154,26 +160,44 @@ function compileShader(type, source) {
   return shader;
 }
 
+function scheduleResize() {
+  if (resizeTimer) return;
+  resizeTimer = window.setTimeout(() => {
+    resizeTimer = null;
+    resizeCanvas();
+  }, 200);
+}
+
 function resizeCanvas() {
   if (!gl || !canvasRef.value) return;
 
-  devicePixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
+  const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
 
   const width = window.innerWidth;
   const height = window.innerHeight;
 
-  canvasRef.value.width = Math.round(width * devicePixelRatio);
-  canvasRef.value.height = Math.round(height * devicePixelRatio);
+  const nextWidth = Math.max(1, Math.round(width * dpr));
+  const nextHeight = Math.max(1, Math.round(height * dpr));
+
+  if (
+    canvasRef.value.width === nextWidth &&
+    canvasRef.value.height === nextHeight &&
+    devicePixelRatio === dpr
+  ) {
+    return;
+  }
+
+  devicePixelRatio = dpr;
+
+  canvasRef.value.width = nextWidth;
+  canvasRef.value.height = nextHeight;
   canvasRef.value.style.width = `${width}px`;
   canvasRef.value.style.height = `${height}px`;
 
-  gl.viewport(0, 0, canvasRef.value.width, canvasRef.value.height);
+  gl.viewport(0, 0, nextWidth, nextHeight);
 
   if (state.uniforms.u_ratio) {
-    gl.uniform1f(
-      state.uniforms.u_ratio,
-      canvasRef.value.width / canvasRef.value.height,
-    );
+    gl.uniform1f(state.uniforms.u_ratio, nextWidth / nextHeight);
   }
 }
 

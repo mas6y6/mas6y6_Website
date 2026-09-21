@@ -43,6 +43,11 @@ const openLink = (url: string) => {
         <img src="/assets/people/dontluck2.jpg" alt="Dontluck2" />
         <h2>DontLuck2</h2>
       </div>
+
+      <div class="people" id="people-nikk" @click="openLink('https://github.com/nikorsd')">
+        <img src="/assets/people/nikk.png" alt="Nikk" />
+        <h2>Nikk</h2>
+      </div>
     </div>
   </div>
 </template>

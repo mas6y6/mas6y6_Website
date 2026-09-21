@@ -103,6 +103,14 @@ div.people {
         img { border-color: #ffffff; }
         h2 { color: white; }
     }
+
+    &#people-nikk {
+        --shadow-color: #0e223d;
+        background-image: linear-gradient(to top, rgb(16 1 55), rgb(21 48 89));
+        border-color: #3a7ae0;
+        img { border-color: #3a7ae0; }
+        h2 { color: white; }
+    }
 }
 
 div.cool-people-box {
