@@ -1,3 +1,6 @@
+<script setup lang="ts">
+</script>
+
 <template>
   <footer>
     <p><a href="https://github.com/mas6y6/mas6y6_Website">Github</a></p>
