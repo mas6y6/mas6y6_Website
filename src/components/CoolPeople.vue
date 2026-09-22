@@ -7,7 +7,16 @@ const openLink = (url: string) => {
 <template>
   <div class="cool-people-box scroll-on">
     <h1>Cool people</h1>
-    <p>These people have pushed me so far to reach this point. I appreciate them and wouldn't be here without them.</p>
+    <p style="text-align: center; font-size: 1.5rem; font-weight: bold;">
+      These people might seem like random names on a website, but they mean a lot to me.<br/>
+      They have supported me, encouraged me, and helped me keep going when I've felt like giving up.<br/>
+      Through coding, projects, conversations, and countless little moments, they've shared their knowledge, experiences, and time with me.<br/>
+      They've helped me learn, grow, and become the person I am today.<br/><br/>
+
+      I'm incredibly grateful for every one of them. They have each left their own mark on my life,<br/>
+      and I genuinely wouldn't be where I am today without them.
+    </p>
+
     <div class="people-links">
       <div class="people" id="people-tech" @click="openLink('https://technologicalbyte.com/')">
         <img src="/assets/people/tech.jpg" alt="TechnologicalByte" />
