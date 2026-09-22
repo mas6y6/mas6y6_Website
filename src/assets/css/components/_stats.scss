@@ -29,21 +29,10 @@ div.stats {
     width: 100%;
     margin-top: 3%;
 
-    embed {
+    img {
         max-width: 30%;
         height: auto;
         display: block;
-
-        &.scroll-on {
-            transform: translateX(-50px);
-            opacity: 0;
-            transition: 1s ease;
-        }
-
-        &.scroll-on-active {
-            transform: translateX(0);
-            opacity: 1;
-        }
     }
 }
 
@@ -53,14 +42,14 @@ div.stats {
         width: 100%;
         margin-top: 3%;
 
-        embed {
+        img {
             max-width: 60%;
         }
     }
 }
 
 @media (max-width: 1000px) {
-    div.stats embed {
+    div.stats img {
         max-width: 100%;
     }
 }

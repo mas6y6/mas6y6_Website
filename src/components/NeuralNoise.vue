@@ -2,7 +2,7 @@
 
 <template>
   <div ref="holderRef" class="absolute inset-0 pointer-events-none">
-    <canvas ref="canvasRef" class="block w-full h-full" />
+    <canvas ref="canvasRef" class="block" />
   </div>
 </template>
 
@@ -32,16 +32,19 @@ const state = {
   startTime: 0,
 };
 
+const getWidth = () => window.visualViewport?.width ?? window.innerWidth;
+const getHeight = () => window.visualViewport?.height ?? window.innerHeight;
+
 const handlePointerMove = (event) => {
-  pointer.targetX = event.clientX / window.innerWidth;
-  pointer.targetY = 1 - event.clientY / window.innerHeight;
+  pointer.targetX = event.clientX / getWidth();
+  pointer.targetY = 1 - event.clientY / getHeight();
 };
 
 const handleTouchMove = (event) => {
   if (!event.touches?.length) return;
   const touch = event.touches[0];
-  pointer.targetX = touch.clientX / window.innerWidth;
-  pointer.targetY = 1 - touch.clientY / window.innerHeight;
+  pointer.targetX = touch.clientX / getWidth();
+  pointer.targetY = 1 - touch.clientY / getHeight();
 };
 
 onMounted(() => {
@@ -55,9 +58,11 @@ onMounted(() => {
   window.addEventListener("resize", scheduleResize, { passive: true });
   window.addEventListener("orientationchange", scheduleResize, { passive: true });
   window.visualViewport?.addEventListener("resize", scheduleResize, { passive: true });
+  window.addEventListener("scroll", scheduleResize, { passive: true });
 
   state.startTime = performance.now();
   frameId = requestAnimationFrame(renderFrame);
+  resizeCanvas();
 });
 
 onBeforeUnmount(() => {
@@ -66,6 +71,7 @@ onBeforeUnmount(() => {
   window.removeEventListener("resize", scheduleResize);
   window.removeEventListener("orientationchange", scheduleResize);
   window.visualViewport?.removeEventListener("resize", scheduleResize);
+  window.removeEventListener("scroll", scheduleResize);
 
   if (resizeTimer) {
     window.clearTimeout(resizeTimer);
@@ -161,11 +167,12 @@ function compileShader(type, source) {
 }
 
 function scheduleResize() {
+  resizeCanvas();
   if (resizeTimer) return;
   resizeTimer = window.setTimeout(() => {
     resizeTimer = null;
     resizeCanvas();
-  }, 200);
+  }, 100);
 }
 
 function resizeCanvas() {
@@ -173,8 +180,8 @@ function resizeCanvas() {
 
   const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
 
-  const width = window.innerWidth;
-  const height = window.innerHeight;
+  const width = getWidth();
+  const height = getHeight();
 
   const nextWidth = Math.max(1, Math.round(width * dpr));
   const nextHeight = Math.max(1, Math.round(height * dpr));
@@ -208,7 +215,7 @@ function renderFrame(now) {
   pointer.y += (pointer.targetY - pointer.y) * 0.05;
 
   const scrollMax = Math.max(
-    document.body.scrollHeight - window.innerHeight,
+    document.body.scrollHeight - getHeight(),
     1,
   );
   const scrollProgress = Math.min(window.scrollY / scrollMax, 1);
