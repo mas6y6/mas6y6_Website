@@ -34,6 +34,12 @@ div.stats {
         height: auto;
         display: block;
     }
+
+    embed {
+        max-width: 100%;
+        min-width: 0;
+        height: auto;
+    }
 }
 
 @media (max-width: 1400px) {

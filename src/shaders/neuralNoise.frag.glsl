@@ -17,7 +17,7 @@ vec2 rotate(vec2 uv, float th) {
 float neuro_shape(vec2 uv, float t, float p) {
   vec2 sine_acc = vec2(0.);
   vec2 res = vec2(0.);
-  float scale = 6.5;
+  float scale = 6.7;
 
   for (int j = 0; j < 14; j++) {
     uv = rotate(uv, 1.);

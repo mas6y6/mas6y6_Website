@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import SoftwareIcon from "../SoftwareIcon.vue";
-import affinity from "/public/software/affinity.jpg";
+import affinity from "/software/affinity.jpg";
 </script>
 
 <template>

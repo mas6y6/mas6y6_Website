@@ -3,14 +3,14 @@ import { onBeforeUnmount, onMounted, ref } from "vue";
 import vertexShaderSource from "../shaders/neuralNoise.vert.glsl?raw";
 import fragmentShaderSource from "../shaders/neuralNoise.frag.glsl?raw";
 
-const holderRef = ref(null);
-const canvasRef = ref(null);
+const holderRef = ref<HTMLElement | null>(null);
+const canvasRef = ref<HTMLCanvasElement | null>(null);
 
-let gl = null;
-let program = null;
-let frameId = null;
+let gl: WebGLRenderingContext | null = null;
+let program: WebGLProgram | null = null;
+let frameId: number | null = null;
 let devicePixelRatio = 1;
-let resizeTimer = null;
+let resizeTimer: number | null = null;
 
 const pointer = {
   x: 0.5,
@@ -19,22 +19,35 @@ const pointer = {
   targetY: 0.5,
 };
 
-const state = {
-  uniforms: {},
+interface UniformHandles {
+  u_time: WebGLUniformLocation | null;
+  u_ratio: WebGLUniformLocation | null;
+  u_pointer_position: WebGLUniformLocation | null;
+  u_scroll_progress: WebGLUniformLocation | null;
+}
+
+const state: { uniforms: UniformHandles; startTime: number } = {
+  uniforms: {
+    u_time: null,
+    u_ratio: null,
+    u_pointer_position: null,
+    u_scroll_progress: null
+  },
   startTime: 0,
 };
 
-const getWidth = () => window.visualViewport?.width ?? window.innerWidth;
-const getHeight = () => window.visualViewport?.height ?? window.innerHeight;
+const getWidth = () => window.innerWidth;
+const getHeight = () => window.innerHeight;
 
-const handlePointerMove = (event) => {
+const handlePointerMove = (event: { clientX: number; clientY: number; }) => {
   pointer.targetX = event.clientX / getWidth();
   pointer.targetY = 1 - event.clientY / getHeight();
 };
 
-const handleTouchMove = (event) => {
+const handleTouchMove = (event: TouchEvent) => {
   if (!event.touches?.length) return;
   const touch = event.touches[0];
+  if (!touch) return;
   pointer.targetX = touch.clientX / getWidth();
   pointer.targetY = 1 - touch.clientY / getHeight();
 };
@@ -50,7 +63,6 @@ onMounted(() => {
   window.addEventListener("resize", scheduleResize, { passive: true });
   window.addEventListener("orientationchange", scheduleResize, { passive: true });
   window.visualViewport?.addEventListener("resize", scheduleResize, { passive: true });
-  window.addEventListener("scroll", scheduleResize, { passive: true });
 
   state.startTime = performance.now();
   frameId = requestAnimationFrame(renderFrame);
@@ -63,7 +75,6 @@ onBeforeUnmount(() => {
   window.removeEventListener("resize", scheduleResize);
   window.removeEventListener("orientationchange", scheduleResize);
   window.visualViewport?.removeEventListener("resize", scheduleResize);
-  window.removeEventListener("scroll", scheduleResize);
 
   if (resizeTimer) {
     window.clearTimeout(resizeTimer);
@@ -83,9 +94,12 @@ onBeforeUnmount(() => {
 
 function initContext() {
   devicePixelRatio = Math.min(window.devicePixelRatio || 1, 1.5);
+  const canvas = canvasRef.value;
+  if (!canvas) return;
+
   gl =
-      canvasRef.value.getContext("webgl", { antialias: true, alpha: true }) ||
-      canvasRef.value.getContext("experimental-webgl");
+      canvas.getContext("webgl", { antialias: true, alpha: true }) ||
+      (canvas.getContext("experimental-webgl") as WebGLRenderingContext | null);
 
   if (!gl) return;
 
@@ -145,7 +159,8 @@ function initContext() {
   resizeCanvas();
 }
 
-function compileShader(type, source) {
+function compileShader(type: number, source: string): WebGLShader | null {
+  if (!gl) return null;
   const shader = gl.createShader(type);
   if (!shader) return null;
   gl.shaderSource(shader, source);
@@ -200,7 +215,7 @@ function resizeCanvas() {
   }
 }
 
-function renderFrame(now) {
+function renderFrame(now: number) {
   if (!gl || !program) return;
 
   pointer.x += (pointer.targetX - pointer.x) * 0.05;
@@ -224,7 +239,7 @@ function renderFrame(now) {
 </script>
 
 <template>
-  <div class="background scroll-on">
+  <div class="background">
     <div ref="holderRef" class="absolute inset-0 pointer-events-none">
       <canvas ref="canvasRef" class="block" />
     </div>

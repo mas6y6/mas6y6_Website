@@ -29,13 +29,17 @@
     >
     <div class="text-content">
       <h1>Hello There! 👋</h1>
-      <p>
-        I'm <strong>mas6y6</strong>!<br/>
-        I am a software developer that loves to work on anything software related or anything that involves technology.<br/>
-        I have a <strong>strong</strong> passion with technology and anything software related.<br/>
+      <div>
+        <p>
+          I'm <strong>mas6y6</strong>!<br/>
+          I am a software developer that loves to work on anything software related or anything that involves technology.<br/>
+          I have a <strong>strong</strong> passion with technology and anything software related.<br/>
+        </p>
         <hr/>
-        Or really to make anything I want exist.
-      </p>
+        <p>
+          Or really to make anything I want exist.
+        </p>
+      </div>
     </div>
   </div>
 </template>
