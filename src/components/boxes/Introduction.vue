@@ -28,10 +28,13 @@
         v-bind:style="{ transform: rotationTransform, transition: 'transform 0.25s ease-out' }"
     >
     <div class="text-content">
-      <h1>Hi</h1>
-      <p>I'm mas6y6.<br/>
-        A young software developer that loves to make things exist.<br/>
-        I have a strong passion with technology and anything software related.
+      <h1>Hello There! 👋</h1>
+      <p>
+        I'm <strong>mas6y6</strong>!<br/>
+        I am a software developer that loves to work on anything software related or anything that involves technology.<br/>
+        I have a <strong>strong</strong> passion with technology and anything software related.<br/>
+        <hr/>
+        Or really to make anything I want exist.
       </p>
     </div>
   </div>
