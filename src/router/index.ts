@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
-import Home from '../views/Home.vue'
-import Projects from '../views/Projects.vue'
+import Home from './Home.vue'
+import Projects from './Projects.vue'
+import NotFound from "./NotFound.vue";
 
 const routes: RouteRecordRaw[] = [
   {
@@ -12,6 +13,10 @@ const routes: RouteRecordRaw[] = [
     path: '/projects',
     name: 'Projects',
     component: Projects
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    component: NotFound
   }
 ]
 

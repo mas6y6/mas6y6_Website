@@ -75,7 +75,7 @@ void main() {
   noise += 0.75 * pow(noise, 5.);
   noise = max(0.0, noise - 0.35);
 
-  float vignette = smoothstep(1.08, 0.28, length(vUv - 0.5));
+  float vignette = smoothstep(1.08, 0.8, length(vUv - 0.5));
   float intensity = clamp(noise * vignette, 0.0, 1.0);
 
   vec3 base = vec3(0.04, 0.39, 0.18);
@@ -98,6 +98,6 @@ void main() {
 
   color = clamp(color, 0.0, 1.0);
 
-  float alpha = smoothstep(0.0, 0.85, intensity) * 0.6;
+  float alpha = smoothstep(0.0, 0.95, intensity) * 0.6;
   gl_FragColor = vec4(color, alpha);
 }

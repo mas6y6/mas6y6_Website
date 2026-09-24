@@ -42,5 +42,4 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
-/* styles are imported from style.css */
 </style>
