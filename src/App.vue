@@ -9,6 +9,8 @@ import ModalHolder from "./components/ModalHolder.vue";
   <ModalHolder />
   <Background />
   <Navbar />
-  <router-view></router-view>
+  <div>
+    <router-view></router-view>
+  </div>
   <Footer />
 </template>

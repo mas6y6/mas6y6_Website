@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import NormalBanner from "../components/NormalBanner.vue";
 import {onMounted, onUnmounted} from "vue";
 
 const handleScrollAnimation = () => {
@@ -15,7 +14,7 @@ const handleScrollAnimation = () => {
 
 onMounted(() => {
   window.addEventListener("scroll", handleScrollAnimation)
-  handleScrollAnimation()
+  handleScrollAnimation() // Initial check
 })
 
 onUnmounted(() => {
@@ -24,23 +23,11 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <NormalBanner />
-  <div class="introduction-box page-fade-in">
+  <div>
 
   </div>
 </template>
 
 <style scoped>
-@keyframes pageFadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-div.introduction-box {
-    opacity: 1;
-    transform: none;
-}
 
-.page-fade-in {
-    animation: pageFadeIn 1s ease;
-}
 </style>

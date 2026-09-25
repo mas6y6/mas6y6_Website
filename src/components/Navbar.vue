@@ -43,6 +43,8 @@ onUnmounted(() => {
     <div class="nav-buttons" :class="{ 'active': isNavActive }">
       <button class="nav-button scroll-on" :class="{ 'active': route.path === '/' }" @click="navigateTo('/')">Home</button>
       <button class="nav-button scroll-on" :class="{ 'active': route.path === '/projects' }" @click="navigateTo('/projects')">Projects</button>
+      <button class="nav-button scroll-on" :class="{ 'active': route.path === '/Blog' }" @click="navigateTo('/Blog')">Blog</button>
+      <button class="nav-button scroll-on" :class="{ 'active': route.path === '/myfuture' }" @click="navigateTo('/myfuture')">My Future</button>
     </div>
   </nav>
 </template>
