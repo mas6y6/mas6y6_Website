@@ -167,6 +167,60 @@ console.log();
 // Cleanup
 // -----------------------------------------------------------------------------
 
+// ---------------------------------------------------------------------------
+// Kills a child process *and* everything it spawned.
+//
+// A plain `child.kill()` is not enough for the Vite process: `bunx` is only a
+// launcher and Vite itself is its child. Killing just the launcher orphans
+// Vite, and because Vite still holds the write end of the piped stdout/stderr,
+// Node's event loop never drains and the process hangs after the render is
+// already done.
+// ---------------------------------------------------------------------------
+
+function killTree(
+    child:
+        | ReturnType<typeof spawn>
+        | undefined
+): void {
+    if (!child?.pid) {
+        return;
+    }
+
+    if (
+        process.platform ===
+        "win32"
+    ) {
+        spawn(
+            "taskkill",
+            [
+                "/pid",
+                String(child.pid),
+
+                // /T kills the whole tree.
+                "/T",
+
+                "/F",
+            ],
+            {
+                stdio: "ignore",
+            }
+        );
+
+        return;
+    }
+
+    // Negative PID targets the whole process group, which is only possible
+    // because the child was spawned detached.
+    try {
+        process.kill(
+            -child.pid,
+            "SIGTERM"
+        );
+    } catch {
+        child.kill();
+    }
+}
+
 async function cleanup(): Promise<void> {
     if (cleaningUp) {
         return;
@@ -180,10 +234,13 @@ async function cleanup(): Promise<void> {
     try {
         if (ffmpeg) {
             ffmpeg.stdin?.destroy();
+            ffmpeg.stderr?.destroy();
 
             if (!ffmpeg.killed) {
                 ffmpeg.kill();
             }
+
+            ffmpeg.unref();
         }
     } catch {
         // Ignore cleanup errors.
@@ -191,9 +248,14 @@ async function cleanup(): Promise<void> {
 
     try {
         if (preview) {
-            if (!preview.killed) {
-                preview.kill();
-            }
+            // Release the pipes first, otherwise an orphaned grandchild keeps
+            // them open and the process can never exit.
+            preview.stdout?.destroy();
+            preview.stderr?.destroy();
+
+            killTree(preview);
+
+            preview.unref();
         }
     } catch {
         // Ignore cleanup errors.
@@ -240,7 +302,7 @@ process.once(
 console.log("Starting Vite...");
 
 preview = spawn(
-    "npx",
+    "bunx",
     [
         "vite",
         "--host",
@@ -255,8 +317,11 @@ preview = spawn(
             "pipe",
         ],
 
-        shell:
-            process.platform ===
+        // `bunx` is a real executable, so no `shell: true` wrapper (and no
+        // cmd.exe) is needed. Detaching on POSIX lets `killTree` signal the
+        // entire process group.
+        detached:
+            process.platform !==
             "win32",
     }
 );
