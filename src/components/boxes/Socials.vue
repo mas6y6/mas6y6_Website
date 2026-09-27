@@ -30,7 +30,7 @@ const openLink = (url: string) => {
         <h2>Youtube</h2>
       </div>
 
-      <div class="social-box discord" id="social-discord" @click="openLink('https://discord.gg/RgXYKeJza6')">
+      <div class="social-box discord" id="social-discord" @click="openLink('https://discord.gg/4RKdnJvPv4')">
         <img src="/assets/socials/discord.png" alt="Discord" />
         <h2>Discord</h2>
       </div>

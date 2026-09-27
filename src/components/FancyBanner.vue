@@ -25,9 +25,9 @@ onMounted(async () => {
   <div
       class="banner"
       :class="{
-      'banner-visible': visible,
-      'banner-shrunk': shrunk
-    }"
+        'banner-visible': visible,
+        'banner-shrunk': shrunk
+      }"
   >
     <div class="banner-content">
       <div class="banner-reveal"></div>
