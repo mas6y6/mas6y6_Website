@@ -2,7 +2,7 @@
 import Navbar from './router/Navbar.vue'
 import Footer from './components/Footer.vue'
 import Background from "./components/Background.vue";
-import ModalHolder from "./components/ModalHolder.vue";
+import ModalHolder from "./components/modal/ModalHolder.vue";
 import {onMounted} from "vue";
 
 onMounted(() => {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import FancyBanner from '../components/FancyBanner.vue'
+import FancyBanner from '../components/banner/FancyBanner.vue'
 import Introduction from '../components/boxes/Introduction.vue'
 import Skills from '../components/boxes/Skills.vue'
 import CoolPeople from '../components/boxes/CoolPeople.vue'

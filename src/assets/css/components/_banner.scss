@@ -33,7 +33,7 @@ div.banner {
     &.banner-visible {
         .banner-reveal {
             animation:
-                    banner-expand 0.35s ease-out forwards,
+                    banner-expand 0.2s ease-out forwards,
                     banner-retract 0.3s cubic-bezier(0.77, 0, 0.175, 1) 0.25s forwards;
         }
 

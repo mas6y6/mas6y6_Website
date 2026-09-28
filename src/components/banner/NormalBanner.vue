@@ -1,10 +1,14 @@
 <script setup lang="ts">
+const props = defineProps<{
+  height?: string
+}>()
 
+const bannerHeight = props.height || '60vh'
 </script>
 
 <template>
-  <div class="banner scroll-on">
-    <img src="/assets/banner.png" alt="banner" class="banner-image">
+  <div class="banner scroll-on" :style="{ '--banner-height': bannerHeight }">
+  <img src="/assets/banner.png" alt="banner" class="banner-image">
   </div>
 </template>
 
@@ -15,7 +19,7 @@ div.banner {
   justify-content: center;
 
   width: auto;
-  height: 60vh;
+  height: var(--banner-height, 60vh);
 
   position: relative;
 
