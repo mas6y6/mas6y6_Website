@@ -1,8 +1,13 @@
 <script setup lang="ts">
-import Navbar from './components/Navbar.vue'
+import Navbar from './router/Navbar.vue'
 import Footer from './components/Footer.vue'
 import Background from "./components/Background.vue";
 import ModalHolder from "./components/ModalHolder.vue";
+import {onMounted} from "vue";
+
+onMounted(() => {
+  window.scrollTo(0,0)
+});
 </script>
 
 <template>

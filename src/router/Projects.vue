@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import NormalBanner from "../components/NormalBanner.vue";
 import {onMounted, onUnmounted} from "vue";
+import CustomizeableBox from "../components/CustomizeableBox.vue";
 
 const handleScrollAnimation = () => {
   const scrollElements = document.querySelectorAll(".scroll-on")
@@ -25,22 +26,16 @@ onUnmounted(() => {
 
 <template>
   <NormalBanner />
-  <div class="introduction-box page-fade-in">
+  <CustomizeableBox background-image="linear-gradient(
+        to top,
+        rgba(0, 51, 255, 0.27),
+        #100017
+    )" border-color="#0033ff">
+      <h1>Projects</h1>
+      <h2>Organizations</h2>
 
-  </div>
+  </CustomizeableBox>
 </template>
 
 <style scoped>
-@keyframes pageFadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-div.introduction-box {
-    opacity: 1;
-    transform: none;
-}
-
-.page-fade-in {
-    animation: pageFadeIn 1s ease;
-}
 </style>
