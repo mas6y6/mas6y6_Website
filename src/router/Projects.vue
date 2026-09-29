@@ -22,6 +22,10 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener("scroll", handleScrollAnimation)
 })
+
+function openLink(url: string) {
+  window.open(url)
+}
 </script>
 
 <template>
@@ -37,7 +41,7 @@ onUnmounted(() => {
     <hr style="margin: 3rem;">
 
     <div style="display: flex; flex-direction: column; gap: 2rem;">
-      <div class="org-box scroll-on" id="parafield">
+      <div class="org-box scroll-on" id="parafield" @click="openLink('https://parafieldstudios.com/')">
         <img id="parafield" src="/assets/orgs/parafield.svg" alt="Parafield Logo" class="scroll-on">
         <div class="internal">
           <h1>Parafield Studios</h1>
@@ -46,12 +50,13 @@ onUnmounted(() => {
         </div>
       </div>
 
-      <div class="org-box scroll-on" id="hypereclipse">
+      <div class="org-box scroll-on" id="hypereclipse" @click="openLink('https://discord.gg/dayFUkc3ys')">
         <img id="hypereclipse" src="/assets/orgs/hypereclipse.svg" alt="HyperEclipse Interactive logo" class="scroll-on">
         <div class="internal">
           <h1>HyperEclipse Interactive</h1>
           <p>HyperEclipse Interactive is more of a close-knit group of friends who enjoy making games with Roblox and Godot.</p>
           <p>While HyperEclipse Interactive is smaller than Parafield, I still really enjoy working with them.</p>
+          <p>( temp link for discord since i am building their website lol 👍 )</p>
         </div>
       </div>
     </div>
@@ -59,16 +64,92 @@ onUnmounted(() => {
     <hr style="margin: 3rem;">
 
     <h1>Projects</h1>
-    <p>These are personal projects I have worked on.</p>
+    <p>Here are some of the personal projects I've worked on over the years.</p>
+    <p>I enjoy building all kinds of things, from games and desktop applications to websites and Minecraft mods.</p>
+
+    <h2>General Projects</h2>
+
+    <p>These are a collection of projects that I've worked on that </p>
 
     <div style="display: flex; flex-direction: column; gap: 2rem;">
+      <div class="project-box scroll-on">
 
+      </div>
     </div>
 
+    <h2>Minecraft Mods ( and things )</h2>
+
+    <div style="display: flex; flex-direction: column; gap: 2rem;">
+      <div class="project-box scroll-on">
+
+      </div>
+    </div>
   </CustomizeableBox>
 </template>
 
 <style scoped lang="scss">
+
+div.project-box {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 50px;
+  border-radius: 15px;
+
+  --background-image: linear-gradient(to top, rgba(85, 0, 255, 0.27), #100017);
+  --border-color: rgba(85, 0, 255);
+
+  background-image: var(--background-image);
+  border: 1px solid;
+  border-color: var(--border-color);
+
+  img {
+    width: 10%;
+    height: auto;
+    opacity: 0;
+    transform: translateX(-50px);
+
+    &.scroll-on-active {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+
+    transition: 1s ease;
+  }
+
+  & div.internal {
+    margin-left: 20px;
+    display: block;
+
+    h1 {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+  }
+
+  &:hover {
+    transform: scale(1.01);
+  }
+
+  &:active {
+    transform: scale(0.99);
+  }
+
+  transition: 0.5s ease;
+
+  &.create-mod-project {
+
+  }
+}
+
+/*
+
+
+Space because my head hurts.
+
+
+*/
+
 div.org-box {
   display: flex;
   box-sizing: border-box;
@@ -78,8 +159,11 @@ div.org-box {
 
   --background-image: linear-gradient(to top, rgba(85, 0, 255, 0.27), #100017);
   --shadow-color: rgba(0, 0, 0, 0.2);
+  --border-color: rgba(85, 0, 255);
 
   background-image: var(--background-image);
+  border: 1px solid;
+  border-color: var(--border-color);
 
   img {
     width: 10%;
@@ -137,13 +221,17 @@ div.org-box {
   }
 
   &#parafield {
-    --background-image: linear-gradient(to right, rgb(255 153 0), #c3772e);
+    --background-image: linear-gradient(to right, #FF9900, #c3772e);
     --shadow-color: rgb(159 96 0);
+    --border-color: #ffbd5f;
   }
 
   &#hypereclipse {
     --background-image: linear-gradient(to right, rgb(255, 100, 100), rgb(150, 125, 255), rgb(100, 150, 255));
     --shadow-color: #6a53af;
+    --border-color: #ffffff;
+
+    border: 2px solid;
   }
 }
 </style>
