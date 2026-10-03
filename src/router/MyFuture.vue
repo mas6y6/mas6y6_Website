@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import NormalBanner from "../components/banner/NormalBanner.vue";
+import CustomizeableBox from "../components/CustomizeableBox.vue";
 import {onMounted, onUnmounted} from "vue";
 
 const handleScrollAnimation = () => {
@@ -14,18 +16,23 @@ const handleScrollAnimation = () => {
 
 onMounted(() => {
   window.addEventListener("scroll", handleScrollAnimation)
-  handleScrollAnimation() // Initial check
+  handleScrollAnimation()
 })
 
 onUnmounted(() => {
   window.removeEventListener("scroll", handleScrollAnimation)
 })
+
 </script>
 
 <template>
-  <div>
-
-  </div>
+  <NormalBanner height="40vh" />
+  <CustomizeableBox background-image="linear-gradient(
+        to top,
+        rgba(0, 51, 255, 0.27),
+        #100017
+    )" border-color="#0033ff">
+  </CustomizeableBox>
 </template>
 
 <style scoped>

@@ -24,10 +24,9 @@ div.banner {
         inset: 0;
 
         background: #9b59ff;
-
-        transform-origin: left center;
-        transform: scaleX(0);
         z-index: 2;
+
+        clip-path: inset(0 100% 0 0);
     }
 
     &.banner-visible {
@@ -43,13 +42,23 @@ div.banner {
     }
 
     @keyframes banner-expand {
-        from { transform: scaleX(0); }
-        to { transform: scaleX(1); }
+        from {
+            clip-path: inset(0 100% 0 0);
+        }
+
+        to {
+            clip-path: inset(0 0 0 0);
+        }
     }
 
     @keyframes banner-retract {
-        from { transform: translateX(0); }
-        to { transform: translateX(100%); }
+        from {
+            clip-path: inset(0 0 0 0);
+        }
+
+        to {
+            clip-path: inset(0 0 0 100%);
+        }
     }
 
     @keyframes banner-logo {

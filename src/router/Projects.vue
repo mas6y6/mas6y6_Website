@@ -72,16 +72,25 @@ function openLink(url: string) {
     <p>These are a collection of projects that I've worked on that </p>
 
     <div style="display: flex; flex-direction: column; gap: 2rem;">
-      <div class="project-box scroll-on">
-
+      <div class="project-box scroll-on musmeta-project" @click="openLink('https://github.com/mas6y6/MusMeta')">
+        <img src="/assets/projects/MusMetaLogo.png" alt="MusMeta" class="scroll-on">
+        <div class="internal">
+          <h1>MusMeta</h1>
+          <p>MusMeta is a all-in-one music metadata editing tool to allow you to edit music metadata in a variety of formats.</p>
+          <p>( Right now it redirects to the github but I do plan to add a website soon! )</p>
+        </div>
       </div>
     </div>
 
-    <h2>Minecraft Mods ( and things )</h2>
+    <h2>Minecraft Development</h2>
 
     <div style="display: flex; flex-direction: column; gap: 2rem;">
-      <div class="project-box scroll-on">
-
+      <div class="project-box scroll-on create-mod-project" @click="openLink('https://modrinth.com/mod/create-configurables')">
+        <img src="/assets/projects/CreateConfigurables.png" alt="MusMeta" class="scroll-on">
+        <div class="internal">
+          <h1>Create Configurables</h1>
+          <p>Create Configurables is a mod that allows you to configure the recipe that is used for the Crushing Wheels, Millstone, and the Item Drain!</p>
+        </div>
       </div>
     </div>
   </CustomizeableBox>
@@ -93,7 +102,7 @@ div.project-box {
   display: flex;
   box-sizing: border-box;
   width: 100%;
-  padding: 50px;
+  padding: 30px;
   border-radius: 15px;
 
   --background-image: linear-gradient(to top, rgba(85, 0, 255, 0.27), #100017);
@@ -104,8 +113,9 @@ div.project-box {
   border-color: var(--border-color);
 
   img {
-    width: 10%;
+    width: 8%;
     height: auto;
+    object-fit: contain;
     opacity: 0;
     transform: translateX(-50px);
 
@@ -119,9 +129,16 @@ div.project-box {
 
   & div.internal {
     margin-left: 20px;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     h1 {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+
+    p {
       margin-top: 5px;
       margin-bottom: 5px;
     }
@@ -138,7 +155,26 @@ div.project-box {
   transition: 0.5s ease;
 
   &.create-mod-project {
+    --background-image: linear-gradient(to top, rgb(0 92 131), #00a8ff);
+    --border-color: rgb(0 167 253);
+  }
 
+  &.musmeta-project {
+    --background-image: linear-gradient(to top, rgb(253 121 139), #fdb94a);
+    --border-color: rgb(251 184 73);
+  }
+}
+
+@media (max-width: 1000px) {
+  div.project-box {
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      width: 40%;
+    }
+
+    gap: 10px;
   }
 }
 
@@ -168,6 +204,7 @@ div.org-box {
   img {
     width: 10%;
     height: auto;
+    object-fit: contain;
 
     &#parafield {
       opacity: 0;
@@ -221,17 +258,28 @@ div.org-box {
   }
 
   &#parafield {
-    --background-image: linear-gradient(to right, #FF9900, #c3772e);
-    --shadow-color: rgb(159 96 0);
+    --background-image: linear-gradient(to right, #f0ad48, #c3942e);
     --border-color: #ffbd5f;
+    --shadow-color: rgb(205 125 0);
   }
 
   &#hypereclipse {
     --background-image: linear-gradient(to right, rgb(255, 100, 100), rgb(150, 125, 255), rgb(100, 150, 255));
+    --border-color: #9881df;
     --shadow-color: #6a53af;
-    --border-color: #ffffff;
+  }
+}
 
-    border: 2px solid;
+@media (max-width: 1000px) {
+  div.org-box {
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      width: 40%;
+    }
+
+    gap: 10px;
   }
 }
 </style>
