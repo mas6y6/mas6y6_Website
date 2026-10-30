@@ -62,11 +62,11 @@ const options: RenderOptions = {
         getArg("crf", "18")
     ),
 
-    // 1.0 = normal speed
+    // 1.0 = same speed as the live page in banner.html
     // 0.5 = half speed
-    // 0.25 = quarter speed
+    // 2.0 = double speed
     speed: Number(
-        getArg("speed", "0.1")
+        getArg("speed", "1.5")
     ),
 };
 
@@ -755,11 +755,13 @@ try {
         //
         //   0, 1/60, 2/60, 3/60...
         //
-        // But the website's animation time is multiplied by `speed`.
+        // But the website's animation time is multiplied by `speed`, and
+        // banner.html renders each frame deterministically from that time
+        // via window.__renderFrame().
         //
-        // speed = 1.0 → normal
+        // speed = 1.0 → same speed as the live page
         // speed = 0.5 → half speed
-        // speed = 0.25 → quarter speed
+        // speed = 2.0 → double speed
         // ---------------------------------------------------------------------
 
         const time =

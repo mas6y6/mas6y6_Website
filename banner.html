@@ -132,7 +132,12 @@
 
         const state = {
             uniforms: {},
-            startTime: 0
+            startTime: 0,
+
+            // When set, renderFrame uses this instead of real time. It is
+            // only for the offscreen renderer, so normal playback is
+            // unaffected.
+            manualTime: null
         };
 
         function compileShader(type, source) {
@@ -328,8 +333,12 @@
                 1
             );
 
-            // Convert milliseconds to seconds.
-            const elapsed = now - state.startTime;
+            // Convert milliseconds to seconds. When the renderer controls
+            // the clock, `manualTime` is the animation time in seconds.
+            const elapsed =
+                state.manualTime !== null
+                    ? state.manualTime * 1000
+                    : now - state.startTime;
 
             if (state.uniforms.u_time !== null) {
                 gl.uniform1f(
@@ -347,7 +356,13 @@
 
             gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
 
-            frameId = requestAnimationFrame(renderFrame);
+            // While the offscreen renderer drives the clock, it must be the
+            // only thing drawing. Re-scheduling the loop would immediately
+            // redraw real elapsed time over the deterministic frame and keep
+            // the compositor busy during every screenshot.
+            if (state.manualTime === null) {
+                frameId = requestAnimationFrame(renderFrame);
+            }
         }
 
         window.addEventListener(
@@ -358,6 +373,35 @@
 
         if (init()) {
             state.startTime = performance.now();
+
+            // -----------------------------------------------------------------
+            // Deterministic render hook for the offscreen renderer (render.ts).
+            //
+            // `time` is the animation time in seconds. Setting `manualTime`
+            // makes one frame render from an exact, arbitrary point on the
+            // timeline, which is what lets the renderer slow the video down
+            // — the shader itself never changes speed in normal browsing.
+            // -----------------------------------------------------------------
+
+            window.__renderFrame = time => {
+                // Stop the real-time loop: it would redraw wall-clock time
+                // over the deterministic frame, and an active animation
+                // makes every screenshot much slower.
+                if (frameId !== null) {
+                    cancelAnimationFrame(frameId);
+
+                    frameId = null;
+                }
+
+                state.manualTime = time;
+
+                renderFrame(
+                    performance.now()
+                );
+
+                state.manualTime = null;
+            };
+
             frameId = requestAnimationFrame(renderFrame);
         } else {
             console.error("WebGL initialization failed.");
