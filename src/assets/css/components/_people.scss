@@ -114,8 +114,7 @@ div.people {
 }
 
 div.cool-people-box {
-    box-sizing: border-box;
-    width: 90%;
+    width: calc(100% - 5% - 5%);
     margin: 5%;
     padding: 50px;
     border-radius: 15px;
@@ -137,6 +136,18 @@ div.cool-people-box {
         transform: translateY(0);
         opacity: 1;
     }
+
+    .scrolltext {
+        opacity: 0;
+        transform: translateX(-100px);
+
+        &.scroll-on-active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        transition: 1s ease;
+    }
 }
 
 /* Tablet */
@@ -149,11 +160,6 @@ div.cool-people-box {
 
 /* Mobile */
 @media (max-width: 600px) {
-    div.cool-people-box {
-        width: calc(100% - 20px);
-        margin: 10px;
-        padding: 25px 15px;
-    }
 
     div.people-links {
         gap: 15px;
