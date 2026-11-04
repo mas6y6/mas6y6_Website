@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import NormalBanner from "../components/banner/NormalBanner.vue";
 import CustomizeableBox from "../components/CustomizeableBox.vue";
-import {onMounted, onUnmounted, ref} from "vue";
+import {onMounted, onUnmounted, ref, watch} from "vue";
+import { isReady } from "../composables/useAssetLoader";
 import {useRoute} from "vue-router";
 import LoadingSpinner from "../components/LoadingSpinner.vue";
 const route = useRoute()
@@ -9,6 +10,7 @@ const blogsLoaded = ref<Boolean>(false)
 const blogs = ref<Array<any>>([])
 
 const handleScrollAnimation = () => {
+  if (!isReady.value) return
   const scrollElements = document.querySelectorAll(".scroll-on")
   scrollElements.forEach((el) => {
     const elementTop = el.getBoundingClientRect().top
@@ -21,7 +23,16 @@ const handleScrollAnimation = () => {
 
 onMounted(() => {
   window.addEventListener("scroll", handleScrollAnimation)
-  handleScrollAnimation()
+  if (!isReady.value) {
+    const unwatch = watch(isReady, (value) => {
+      if (value) {
+        unwatch();
+        handleScrollAnimation();
+      }
+    });
+  } else {
+    handleScrollAnimation();
+  }
 })
 
 onUnmounted(() => {

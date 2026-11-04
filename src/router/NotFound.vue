@@ -1,13 +1,27 @@
 <script setup lang="ts">
-import {onMounted, ref} from "vue";
+import {onMounted, ref, watch} from "vue";
+import { isReady } from "../composables/useAssetLoader";
 
   const box = ref<HTMLDivElement | null>(null);
   const funnyMessage = ref<string>("");
 
   onMounted(() => {
-    requestAnimationFrame(() => {
-      box.value?.classList.add("scroll-on-active");
-    });
+    const addActive = () => {
+      requestAnimationFrame(() => {
+        box.value?.classList.add("scroll-on-active");
+      });
+    };
+
+    if (!isReady.value) {
+      const unwatch = watch(isReady, (value) => {
+        if (value) {
+          unwatch();
+          addActive();
+        }
+      });
+    } else {
+      addActive();
+    }
 
     let ran = Math.floor(Math.random() * 3 );
 

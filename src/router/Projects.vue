@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import NormalBanner from "../components/banner/NormalBanner.vue";
-import {onMounted, onUnmounted} from "vue";
+import {onMounted, onUnmounted, watch} from "vue";
 import CustomizeableBox from "../components/CustomizeableBox.vue";
+import { isReady } from "../composables/useAssetLoader";
 
 const handleScrollAnimation = () => {
+  if (!isReady.value) return
   const scrollElements = document.querySelectorAll(".scroll-on")
   scrollElements.forEach((el) => {
     const elementTop = el.getBoundingClientRect().top
@@ -16,7 +18,16 @@ const handleScrollAnimation = () => {
 
 onMounted(() => {
   window.addEventListener("scroll", handleScrollAnimation)
-  handleScrollAnimation()
+  if (!isReady.value) {
+    const unwatch = watch(isReady, (value) => {
+      if (value) {
+        unwatch();
+        handleScrollAnimation();
+      }
+    });
+  } else {
+    handleScrollAnimation();
+  }
 })
 
 onUnmounted(() => {
@@ -36,11 +47,10 @@ function openLink(url: string) {
         #100017
     )" border-color="#0033ff">
     <h1>Organizations</h1>
-    <p>These here are organizations that I are a part of.</p>
 
     <hr style="margin: 3rem;">
 
-    <div style="display: flex; flex-direction: column; gap: 2rem;">
+    <div class="org-container">
       <div class="org-box scroll-on" id="parafield" @click="openLink('https://parafieldstudios.com/')">
         <img id="parafield" src="/assets/orgs/parafield.svg" alt="Parafield Logo" class="scroll-on">
         <div class="internal">
@@ -57,6 +67,15 @@ function openLink(url: string) {
           <p>HyperEclipse Interactive is more of a close-knit group of friends who enjoy making games with Roblox and Godot.</p>
           <p>While HyperEclipse Interactive is smaller than Parafield, I still really enjoy working with them.</p>
           <p>( temp link for discord since i am building their website lol 👍 )</p>
+        </div>
+      </div>
+
+      <div class="org-box scroll-on" id="prcb" @click="openLink('https://projectcrowbar.com')">
+        <img id="prcb" src="/assets/orgs/prcb-icon.gif" alt="HyperEclipse Interactive logo" class="scroll-on">
+        <div class="internal">
+          <h1>Project Crowbar</h1>
+          <p>Project Crowbar is a self-hosted modded server centered around the Create mod and its addons, along with Mekanism and Ars Nouveau!</p>
+          <p>I work with them to build QOL mods and help debug issues and crashes</p>
         </div>
       </div>
     </div>
@@ -144,12 +163,15 @@ div.project-box {
     }
   }
 
+  border-left-color: color-mix(in srgb, var(--border-color), white 30%);
+  border-left-width: 0;
+
   &:hover {
-    transform: scale(1.01);
+    border-left-width: 10px;
   }
 
   &:active {
-    transform: scale(0.99);
+    transform: scale(0.95);
   }
 
   transition: 0.5s ease;
@@ -188,12 +210,15 @@ Space because my head hurts.
 
 div.org-box {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   box-sizing: border-box;
   width: 100%;
+  gap: 50px;
   padding: 50px;
   border-radius: 15px;
 
-  --background-image: linear-gradient(to top, rgba(85, 0, 255, 0.27), #100017);
+  --background-image: linear-gradient(to bottom, rgba(85, 0, 255, 0.27), #100017);
   --shadow-color: rgba(0, 0, 0, 0.2);
   --border-color: rgba(85, 0, 255);
 
@@ -201,8 +226,14 @@ div.org-box {
   border: 1px solid;
   border-color: var(--border-color);
 
+  & div.internal {
+    h1 {
+      text-align: center;
+    }
+  }
+
   img {
-    width: 10%;
+    width: 45%;
     height: auto;
     object-fit: contain;
 
@@ -220,11 +251,25 @@ div.org-box {
 
     &#hypereclipse {
       opacity: 0;
-      transform: translateX(-50px);
+      transform: translateY(-50px);
 
       &.scroll-on-active {
         opacity: 1;
-        transform: translateX(0px);
+        transform: translateY(0px);
+      }
+
+      transition: 1s ease;
+    }
+
+    &#prcb {
+      width: 60%;
+
+      opacity: 0;
+      transform: scale(0%);
+
+      &.scroll-on-active {
+        opacity: 1;
+        transform: scale(100%);
       }
 
       transition: 1s ease;
@@ -232,7 +277,6 @@ div.org-box {
   }
 
   & div.internal {
-    margin-left: 20px;
     display: block;
 
     h1 {
@@ -258,15 +302,62 @@ div.org-box {
   }
 
   &#parafield {
-    --background-image: linear-gradient(to right, #f0ad48, #c3942e);
+    --background-image: linear-gradient(to bottom, #f0ad48, #ffb556);
     --border-color: #ffbd5f;
     --shadow-color: rgb(205 125 0);
   }
 
   &#hypereclipse {
-    --background-image: linear-gradient(to right, rgb(255, 100, 100), rgb(150, 125, 255), rgb(100, 150, 255));
+    --background-image: linear-gradient(to bottom, rgb(255, 100, 100), rgb(150, 125, 255), rgb(100, 150, 255));
     --border-color: #9881df;
     --shadow-color: #6a53af;
+  }
+
+  &#prcb {
+    --border-color: #ff8d46;
+    --shadow-color: #c67b2b;
+
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+
+      background-size: cover;
+      background:
+          linear-gradient(to top, black, transparent),
+          url("/assets/orgs/prcb-panorama.webp") no-repeat center 35%;
+
+      opacity: 0.7;
+    }
+  }
+}
+
+.org-container {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 2rem;
+  align-items: stretch;
+
+  .org-box {
+    flex: 1 1 300px;
+    min-width: 0;
+    width: auto;
+  }
+}
+
+@media (max-width: 700px) {
+  .org-container {
+    flex-direction: column;
+
+    .org-box {
+      flex: none;
+      width: 100%;
+    }
   }
 }
 

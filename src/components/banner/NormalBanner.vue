@@ -36,7 +36,7 @@ div.banner {
   img {
     opacity: 0;
 
-    max-height: 150px;
+    max-height: 130px;
     width: auto;
 
     transform: translateY(-20px);

@@ -7,7 +7,8 @@ import Statistics from '../components/boxes/Statistics.vue'
 import Socials from '../components/boxes/Socials.vue'
 import BackToTop from '../components/BackToTop.vue'
 import Software from "../components/boxes/Software.vue";
-import {onMounted, onUnmounted} from "vue";
+import {onMounted, onUnmounted, watch} from "vue";
+import { isReady } from "../composables/useAssetLoader";
 
 const revealed = new Set<Element>()
 let unlockTimer: number | undefined
@@ -23,6 +24,7 @@ const unlockScroll = () => {
 }
 
 const handleScrollAnimation = () => {
+  if (!isReady.value) return
   const scrollElements = document.querySelectorAll(".scroll-on")
   scrollElements.forEach((el) => {
     if (revealed.has(el)) return
@@ -44,7 +46,16 @@ const handleBannerShrunk = () => {
 onMounted(() => {
   lockScroll()
   window.addEventListener("scroll", handleScrollAnimation)
-  handleScrollAnimation() // Initial check
+  if (!isReady.value) {
+    const unwatch = watch(isReady, (value) => {
+      if (value) {
+        unwatch();
+        handleScrollAnimation();
+      }
+    });
+  } else {
+    handleScrollAnimation();
+  }
 })
 
 onUnmounted(() => {

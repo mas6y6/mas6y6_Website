@@ -3,6 +3,7 @@ import Navbar from './router/Navbar.vue'
 import Footer from './components/Footer.vue'
 import Background from "./components/Background.vue";
 import ModalHolder from "./components/modal/ModalHolder.vue";
+import LoadingScreen from "./components/LoadingScreen.vue";
 import {onMounted} from "vue";
 
 onMounted(() => {
@@ -18,4 +19,5 @@ onMounted(() => {
     <router-view></router-view>
   </div>
   <Footer />
+  <LoadingScreen />
 </template>

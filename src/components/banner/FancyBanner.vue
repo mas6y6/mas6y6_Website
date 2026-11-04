@@ -1,12 +1,15 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, watch } from "vue";
 import BannerText from "./BannerText.vue";
+import {waitForReady} from "../../composables/useAssetLoader";
 
 const emit = defineEmits<{ shrunk: [] }>()
 const visible = ref(false)
 const shrunk = ref(false)
 
 onMounted(async () => {
+  await waitForReady();
+
   await new Promise(resolve => setTimeout(resolve, 200))
 
   visible.value = true
@@ -36,4 +39,3 @@ onMounted(async () => {
     </div>
   </div>
 </template>
-

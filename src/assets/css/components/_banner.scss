@@ -67,7 +67,11 @@ div.banner {
     }
 
     &.banner-shrunk {
-        height: 45vh;
+        height: 40vh;
+
+        img {
+            max-height: 130px;
+        }
     }
 
     img {
@@ -78,6 +82,8 @@ div.banner {
 
         max-height: 150px;
         width: auto;
+
+        transition: max-height 0.8s ease;
     }
 }
 
