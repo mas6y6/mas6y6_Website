@@ -3,7 +3,7 @@ import Home from './Home.vue'
 import Projects from './Projects.vue'
 import NotFound from "./NotFound.vue";
 import MyFuture from "./MyFuture.vue";
-import Blog from "./Blog.vue";
+import Blogs from "./Blogs.vue";
 
 const routes: RouteRecordRaw[] = [
   {
@@ -19,7 +19,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/blog',
     name: 'Blog',
-    component: Blog
+    component: Blogs
   },
   {
     path: '/myfuture',

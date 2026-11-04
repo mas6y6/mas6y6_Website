@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import NormalBanner from "../components/banner/NormalBanner.vue";
 import CustomizeableBox from "../components/CustomizeableBox.vue";
-import {onMounted, onUnmounted} from "vue";
+import {onMounted, onUnmounted, ref} from "vue";
+import {useRoute} from "vue-router";
+import LoadingSpinner from "../components/LoadingSpinner.vue";
+const route = useRoute()
+const blogsLoaded = ref<Boolean>(false)
+const blogs = ref<Array<any>>([])
 
 const handleScrollAnimation = () => {
   const scrollElements = document.querySelectorAll(".scroll-on")
@@ -32,9 +37,17 @@ onUnmounted(() => {
         rgba(0, 51, 255, 0.27),
         #100017
     )" border-color="#0033ff">
+    <div v-if="!blogsLoaded">
+      <loading-spinner></loading-spinner>
+    </div>
+    <div v-if="blogsLoaded">
+      <div v-for="blog of blogs">
+
+      </div>
+    </div>
   </CustomizeableBox>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 
 </style>
