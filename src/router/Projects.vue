@@ -40,15 +40,12 @@ function openLink(url: string) {
 </script>
 
 <template>
-  <NormalBanner height="40vh" />
   <CustomizeableBox background-image="linear-gradient(
         to top,
         rgba(0, 51, 255, 0.27),
         #100017
     )" border-color="#0033ff">
-    <h1>Organizations</h1>
-
-    <hr style="margin: 3rem;">
+    <h1 style="text-align: center">Organizations / Groups I am apart of</h1>
 
     <div class="org-container">
       <div class="org-box scroll-on" id="parafield" @click="openLink('https://parafieldstudios.com/')">
